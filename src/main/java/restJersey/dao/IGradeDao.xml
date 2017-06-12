@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="restJersey.dao.IGradeDao">
+    <!-- <cache />
+    <sql id="testTableCols"> id,col </sql>
+    <insert id="insert" parameterType="MybatisDemoDTO" useGeneratedKeys="true" keyProperty="id">
+        insert into test (<include refid="testTableCols"/>) values(
+        	0,#{col}
+        )
+    </insert>
+    
+    <update id="update" parameterType="MybatisDemoDTO">
+        update test set col = #{col} where id = #{id}
+    </update>
+    
+    已在接口中使用注解定义了
+    <delete id="delete" parameterType="int">
+        delete from test where id = #{id}
+    </delete>
+    
+    <select id="findById" parameterType="int" resultType="MybatisDemoDTO">
+        select <include refid="testTableCols"/> from test where id = #{id}
+    </select>
+    
+    <select id="find" parameterType="map" resultType="MybatisDemoDTO">
+        select <include refid="testTableCols"/> from test
+        <where>
+            <if test="col != null">
+                col like #{col}
+            </if>
+        </where>
+    </select> -->
+    
+    <resultMap id="resultMap" type="restJersey.bean.Grade">
+    	<result property="id" column="id" />
+    	<result property="sno" column="sno" />
+    	<result property="sname" column="sname" />
+    	<result property="cno" column="cno" />
+    	<result property="cname" column="cname" />
+    	<result property="score" column="score" />
+    </resultMap>
+    
+    <select id="getAllGrade" parameterType="restJersey.bean.Grade" statementType="CALLABLE">
+    	{CALL RESTFUL_SERVICE.get_grade(
+    		#{sno, mode=IN, jdbcType=VARCHAR}, 
+    		#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=resultMap} 
+    	)}
+    </select>
+</mapper>

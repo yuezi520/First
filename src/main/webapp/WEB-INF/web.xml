@@ -1,0 +1,53 @@
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Restful Web Application</display-name>
+	
+	<welcome-file-list>
+  		<welcome-file>grade/gradeManage.html</welcome-file>
+  	</welcome-file-list>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>restJersey.service.impl.**</param-value>
+		</init-param>
+		<init-param>
+	      	<param-name>com.sun.jersey.config.feature.Redirect</param-name>
+			<param-value>true</param-value>
+	    </init-param>
+	    <init-param>
+	      	<param-name>com.sun.jersey.config.feature.FilterForwardOn404</param-name>
+	      	<param-value>true</param-value>
+	    </init-param>
+	    <!-- 过滤静态页面，否则页面不显示或者静态文件无法加载 无效果-->
+	    <init-param>
+	      	<param-name>com.sun.jersey.config.property.WebPageContentRegex</param-name>
+	      	<param-value>*.jsp</param-value>
+	    </init-param>
+	    <!-- Jersy返回PoJO对象必须添加否则会报MIME media type application/json was not found.异常 -->
+	    <init-param>
+	      	<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+	      	<param-value>true</param-value>
+	    </init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
