@@ -41,7 +41,7 @@
     	<result property="score" column="score" />
     </resultMap>
     
-    <select id="getAllGrade" parameterType="restJersey.bean.Grade" statementType="CALLABLE">
+    <select id="getGrade" parameterType="restJersey.bean.Grade" statementType="CALLABLE">
     	{CALL RESTFUL_SERVICE.get_grade(
     		#{sno, mode=IN, jdbcType=VARCHAR}, 
     		#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=resultMap} 

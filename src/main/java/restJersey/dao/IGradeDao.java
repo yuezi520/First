@@ -9,5 +9,5 @@ public interface IGradeDao {
 	 * 获取所有学生成绩
 	 * @return
 	 */
-	public List<Grade> getAllGrade(Grade grade);
+	public List<Grade> getGrade(Grade grade);
 }

@@ -17,7 +17,7 @@ public class GradeService implements IGradeService {
 	@Override
 	public List<Grade> getAllGrade() {
 		Grade grade = new Grade();
-		gradeDao.getAllGrade(grade);
+		gradeDao.getGrade(grade);
 		return grade.getList();
 	}
 
@@ -25,7 +25,7 @@ public class GradeService implements IGradeService {
 	public Grade getGradeBySno(String sno) {
 		Grade grade = new Grade();
 		grade.setSno(sno);
-		gradeDao.getAllGrade(grade);
+		gradeDao.getGrade(grade);
 		if(null != grade.getList())
 			return grade.getList().get(0);
 		return null;
@@ -35,7 +35,7 @@ public class GradeService implements IGradeService {
 	public Grade getGradeBySnoQuery(String sno) {
 		Grade grade = new Grade();
 		grade.setSno(sno);
-		gradeDao.getAllGrade(grade);
+		gradeDao.getGrade(grade);
 		if(null != grade.getList())
 			return grade.getList().get(0);
 		return null;
